@@ -7,6 +7,6 @@ const lowesUrl = "http://m.lowes.com/CatalogServices/product/nvalue/v1_0?nValue=
 
   exports.productsList = async (req, res, next) => {
     const response = await fetch(lowesUrl);
-    const data = await response.json();
-    res.render('index', { title: 'Interview Test', data });
+    const products = await response.json();
+    res.render('index', { title: 'Interview Test', products: products.productList });
   };

@@ -5,4 +5,13 @@ body {
 a {
   color: #00B7FF; }
 
+.cardList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; }
+
+.card {
+  font-family: "helvetica", "sans-serif";
+  width: 25%; }
+
 /*# sourceMappingURL=style.css.map */

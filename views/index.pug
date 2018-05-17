@@ -1,6 +1,8 @@
 extends layout
 
+include mixins/_productCard
+
 block content
-  img(src=`${data.productList[0].imageUrls.md}`)
-  h1 #{data.productList[0].brand} #{data.productList[0].description}
-  p $#{data.productList[0].networkPrice}
+  .cardList
+    each product in products
+      +productCard(product)

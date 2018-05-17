@@ -1,0 +1,5 @@
+mixin productCard(product = {})
+  .card
+    img(src=`${product.imageUrls.sm}`)
+    h4 #{product.brand} #{product.description}
+    p $#{product.networkPrice}
