@@ -5,23 +5,115 @@
       
 .card
   font-family: $font
+  font-weight: bold
   border: 1px solid $grey
   width: 23%
   text-align: center
-  img
-    max-width: 100px
-    max-height: 100px
+  margin-bottom: 20px
+  .cardWrapper
+    padding: 20px
+    img
+      max-width: 100px
+      max-height: 100px
+    .cardText
+      font-size: 14px
+      text-align: left
+    .cardPrice
+      font-size: 16px
+      text-align: left
+    button
+      border: 1px solid $grey
+      font-size: 14px
+      color: $blue
+      width: 100%
+      height: 44px
+      background: none
+      transition: 0.25s
+    button:hover
+      background: $blue
+      color: $white
   @media all and(max-width: 850px)
     width: 48%
+    .cardWrapper
+      width: 100%
+      display: flex
+      height: 
+    img
+      width: 40%
+    .textPriceWrapper
+      width: 50%
+      .cardText
+        font-size: 12px
+      .cardPrice
+        font-size: 14px
+      button
+        height: 35px
   @media all and (max-width: 550px)
     width: 100%
+    .cardWrapper
+      width: 100%
+      display: flex
+    img 
+      width: 40%
+    .textPriceWrapper
+      width: 50%
+      .cardText
+        font-size: 12px
+      .cardPrice
+        font-size: 14px
+      button
+        height: 35px
+
 
 .cardHero
+  font-family: $font
   width: 100%
   position: relative
   border: 1px solid $grey
+  margin-bottom: 20px
   .heroWrapper
     padding: 20px
+    display: flex
     img
       max-width: 195px
       max-height: 195px
+    .heroContent
+      color: $black
+      padding: 0px 10px
+      .heroTitle
+        font-size: 16px
+        font-weight: bold
+      .heroBullets
+        font-size: 14px
+    .heroPriceAndButton
+      padding: 0px 10px
+      width: 28%
+      vertical-align: top
+      .heroPrice
+        color: $black
+        font-size: 22px
+        font-weight: bold
+      button
+        color: $white
+        height: 44px
+        background-color: $green
+        width: 100%
+        border: none
+        font-size: 14px
+  @media all and(max-width: 850px)
+    .heroWrapper
+      display: flex
+      flex-direction: column
+      justify-content: center
+      width: 48%
+  @media all and (max-width: 550px)
+    .heroWrapper
+      display: flex
+      flex-direction: column
+      justify-content: center
+      width: 82%
+      .heroPriceAndButton
+        width: 100%
+
+
+

@@ -6,9 +6,24 @@ block content
   .cardHero
     .heroWrapper
       img(src=`${heroObj.imageUrls.lg}`)
-      h4 #{heroObj.brand} #{heroObj.description}
-      .heroPrice
-        p $#{heroObj.networkPrice}
+      .heroContent
+        .heroTitle
+          #{heroObj.brand} #{heroObj.description}
+        .heroBullets
+        - let n = 0
+          ul
+            while n < 3
+              li #{heroObj.marketingBullets[n++]}
+
+
+
+
+      .heroPriceAndButton
+        .heroPrice
+          p $#{heroObj.networkPrice.replace(/(\.\d+)/g,".00")}
+        a(href="nothing!")
+          button(type="submit") ADD TO CART
+
   .cardList
     each product in products
       +productCard(product)

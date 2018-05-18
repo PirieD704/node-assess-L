@@ -1,9 +1,11 @@
 mixin productCard(product = {})
   .card
-    img(src=`${product.imageUrls.sm}`)
-    .cardText
-      p #{product.brand} #{product.description}
-    .cardPrice
-      p $#{product.networkPrice}
-    a(href=`/${product.pricing.productId}`)
-      button(type="button") VIEW MORE
+    .cardWrapper
+      img(src=`${product.imageUrls.sm}`)
+      .textPriceWrapper
+        .cardText
+          p #{product.brand} #{product.description}
+        .cardPrice
+          p $#{product.networkPrice.replace(/(\.\d+)/g,".00")}
+        a(href=`/${product.pricing.productId}`)
+          button(type="button") VIEW MORE
