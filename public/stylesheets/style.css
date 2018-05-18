@@ -1,6 +1,10 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: flex;
+  justify-content: space-around; }
+  body .main {
+    max-width: 1032px; }
 
 a {
   color: #00B7FF; }
@@ -12,6 +16,27 @@ a {
 
 .card {
   font-family: "helvetica", "sans-serif";
-  width: 25%; }
+  border: 1px solid #cccccc;
+  width: 23%;
+  text-align: center; }
+  .card img {
+    max-width: 100px;
+    max-height: 100px; }
+  @media all and (max-width: 850px) {
+    .card {
+      width: 48%; } }
+  @media all and (max-width: 550px) {
+    .card {
+      width: 100%; } }
+
+.cardHero {
+  width: 100%;
+  position: relative;
+  border: 1px solid #cccccc; }
+  .cardHero .heroWrapper {
+    padding: 20px; }
+    .cardHero .heroWrapper img {
+      max-width: 195px;
+      max-height: 195px; }
 
 /*# sourceMappingURL=style.css.map */

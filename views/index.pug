@@ -3,6 +3,12 @@ extends layout
 include mixins/_productCard
 
 block content
+  .cardHero
+    .heroWrapper
+      img(src=`${heroObj.imageUrls.lg}`)
+      h4 #{heroObj.brand} #{heroObj.description}
+      .heroPrice
+        p $#{heroObj.networkPrice}
   .cardList
     each product in products
       +productCard(product)

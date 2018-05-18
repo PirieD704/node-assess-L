@@ -1,8 +1,27 @@
 .cardList
-    display: flex
-    flex-wrap: wrap
-    justify-content: space-between
+  display: flex
+  flex-wrap: wrap
+  justify-content: space-between
       
 .card
-    font-family: $font
-    width: 25%
+  font-family: $font
+  border: 1px solid $grey
+  width: 23%
+  text-align: center
+  img
+    max-width: 100px
+    max-height: 100px
+  @media all and(max-width: 850px)
+    width: 48%
+  @media all and (max-width: 550px)
+    width: 100%
+
+.cardHero
+  width: 100%
+  position: relative
+  border: 1px solid $grey
+  .heroWrapper
+    padding: 20px
+    img
+      max-width: 195px
+      max-height: 195px
