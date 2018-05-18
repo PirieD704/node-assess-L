@@ -18,31 +18,35 @@ a {
   font-family: Helvetica, sans-serif;
   font-weight: bold;
   border: 1px solid #cccccc;
-  width: 23%;
+  width: calc(25% - 20px);
   text-align: center;
-  margin-bottom: 20px; }
+  margin: 10px 0px; }
   .card .cardWrapper {
     padding: 20px; }
     .card .cardWrapper img {
       max-width: 100px;
       max-height: 100px; }
-    .card .cardWrapper .cardText {
-      font-size: 14px;
-      text-align: left; }
-    .card .cardWrapper .cardPrice {
-      font-size: 16px;
-      text-align: left; }
-    .card .cardWrapper button {
-      border: 1px solid #cccccc;
-      font-size: 14px;
-      color: #0471af;
-      width: 100%;
-      height: 44px;
-      background: none;
-      transition: 0.25s; }
-    .card .cardWrapper button:hover {
-      background: #0471af;
-      color: #ffffff; }
+    .card .cardWrapper .textPriceWrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; }
+      .card .cardWrapper .textPriceWrapper .cardText {
+        font-size: 14px;
+        text-align: left; }
+      .card .cardWrapper .textPriceWrapper .cardPrice {
+        font-size: 16px;
+        text-align: left; }
+      .card .cardWrapper .textPriceWrapper button {
+        border: 1px solid #cccccc;
+        font-size: 14px;
+        color: #0471af;
+        width: 100%;
+        height: 44px;
+        background: none;
+        transition: 0.25s; }
+      .card .cardWrapper .textPriceWrapper button:hover {
+        background: #0471af;
+        color: #ffffff; }
   @media all and (max-width: 850px) {
     .card {
       width: 48%; }
@@ -81,7 +85,7 @@ a {
   width: 100%;
   position: relative;
   border: 1px solid #cccccc;
-  margin-bottom: 20px; }
+  margin-bottom: 15px; }
   .cardHero .heroWrapper {
     padding: 20px;
     display: flex; }

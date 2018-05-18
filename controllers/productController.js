@@ -5,7 +5,7 @@ const lowesUrl = "http://m.lowes.com/CatalogServices/product/nvalue/v1_0?nValue=
 
 
 
-exports.productsList = async (req, res, next) => {
+exports.getProducts = async (req, res, next) => {
   const response = await fetch(lowesUrl);
   const products = await response.json();
   let heroObj = {};
