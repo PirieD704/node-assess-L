@@ -1,0 +1,54 @@
+mixin pagination(page, pages, productCount)
+  .pagination
+    if productCount > 8
+      .pagination_prev
+        if page > 1
+          a(href=`/page/${page -1}`) #{'<'}
+        else
+          a.disabled(href=`/page/${page -1}` disabled) #{'<'}
+      .pagination_numbers
+        - let n = 1
+          if page < 5
+            while n < 6
+              if n === page
+                .pageNumberCurrent
+                  a(href=`/page/${n}`) #{n}
+              else
+                .pageNumber
+                  a(href=`/page/${n}`) #{n}
+              - n++
+            if pages >= 6
+              .pageDots
+                p #{"..."}
+              .pageEnd
+                a(href=`/page/${pages}`) #{pages}
+            .pagination_next
+              if page >= pages
+                p #{'>'}
+              else
+                a(href=`/page/${page + 1}`) #{'>'}
+          else
+            - let r = page - 1
+            - let limit = page + 2
+            .pageDots
+              p #{'...'}
+            while r < limit
+              if r === page
+                .pageNumberCurrent
+                  a(href=`/page/${r}`) #{r}
+              else
+                .pageNumber
+                  a(href=`/page/${r}`) #{r}
+              - r++
+            if limit < pages
+              .pageDots
+                p #{'...'}
+              .pageNumber
+                a(href=`/page/${pages}`) #{pages}
+              .pagination_next
+                a(href=`/page/${page + 1}`) #{'>'}
+            else
+              .pageNumber
+                a(href=`/page/${pages}`) #{pages}
+              .pagination_next
+                a(href=`/page/${page + 1}`) #{'>'}

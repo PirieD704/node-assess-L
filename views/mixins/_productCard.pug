@@ -7,5 +7,5 @@ mixin productCard(product = {})
           p #{product.brand} #{product.description}
         .cardPrice
           p $#{product.networkPrice.replace(/(\.\d+)/g,".00")}
-        a(href=`/${product.pricing.productId}`)
+        a(href=`/page/${page}?id=${product.pricing.productId}`)
           button(type="button") VIEW MORE
