@@ -1,54 +1,99 @@
 mixin pagination(page, pages, productCount)
   .pagination
-    if productCount > 8
-      .pagination_prev
+    .paginationWrapper
+      .pagination_prev_wrapper
         if page > 1
-          a(href=`/page/${page -1}`) #{'<'}
+          a(href=`/page/${parseFloat(page) -1}`) 
+            .pagination_prev
+              p #{'<'}
         else
-          a.disabled(href=`/page/${page -1}` disabled) #{'<'}
+          a.disabled(href=`/page/${parseFloat(page) -1}` disabled) 
+            .pagination_prev
+              p #{'<'}
       .pagination_numbers
         - let n = 1
           if page < 5
             while n < 6
-              if n === page
-                .pageNumberCurrent
-                  a(href=`/page/${n}`) #{n}
+              if n == page
+                - console.log('n = ' + n)
+                .pageNumberCurrentWrapper
+                  a(href=`/page/${n}`) 
+                    .pageNumberCurrent
+                      p #{n}
               else
-                .pageNumber
-                  a(href=`/page/${n}`) #{n}
+                .pageNumberWrapper
+                  a(href=`/page/${n}`)
+                    .pageNumber
+                      p #{n}
               - n++
             if pages >= 6
               .pageDots
                 p #{"..."}
-              .pageEnd
-                a(href=`/page/${pages}`) #{pages}
-            .pagination_next
+              .pageEndWrapper
+                a(href=`/page/${pages}`) 
+                  .pageEnd.pageNumber
+                    p #{pages}
+            .pagination_next_wrapper
               if page >= pages
-                p #{'>'}
+                .pageNumber
+                  p #{'>'}
               else
-                a(href=`/page/${page + 1}`) #{'>'}
+                a(href=`/page/${parseFloat(page) + 1}`)
+                  .pagination_next.pageNumber
+                    p #{'>'}
           else
-            - let r = page - 1
-            - let limit = page + 2
+            - let r = parseFloat(page) - 1
+            - let limit = parseFloat(page) + 2
             .pageDots
               p #{'...'}
             while r < limit
-              if r === page
-                .pageNumberCurrent
-                  a(href=`/page/${r}`) #{r}
-              else
-                .pageNumber
-                  a(href=`/page/${r}`) #{r}
+              if r == page 
+                .pageNumberCurrentWrapper
+                  a(href=`/page/${r}`) 
+                    .pageNumberCurrent
+                      p #{r}
+              else if !(r >= pages)
+                .pageNumberWrapper
+                  a(href=`/page/${r}`) 
+                    .pageNumber
+                      p #{r}
               - r++
             if limit < pages
               .pageDots
                 p #{'...'}
-              .pageNumber
-                a(href=`/page/${pages}`) #{pages}
-              .pagination_next
-                a(href=`/page/${page + 1}`) #{'>'}
+              .pageNumberWrapper
+                a(href=`/page/${pages}`) 
+                  .pageNumber
+                    p #{pages}
+              .pagination_next_wrapper
+                a(href=`/page/${parseFloat(page) + 1}`) 
+                  .pagination_next.pageNumber
+                    p #{'>'}
             else
-              .pageNumber
-                a(href=`/page/${pages}`) #{pages}
-              .pagination_next
-                a(href=`/page/${page + 1}`) #{'>'}
+              if page >= pages
+              else
+                .pageNumberWrapper
+                  a(href=`/page/${pages}`) 
+                    .pageNumber
+                      p #{pages}
+                .pagination_next_wrapper
+                  a(href=`/page/${parseFloat(page) + 1}`) 
+                    .pagination_next.pageNumber
+                      p #{'>'}
+    .pagination_mobile_wrapper
+      .pagination_prev_wrapper
+        if page > 1
+          a(href=`/page/${parseFloat(page) -1}`) 
+            .pagination_prev
+              p #{'<'}
+        else
+          a.disabled(href=`/page/${parseFloat(page) -1}` disabled) 
+            .pagination_prev
+              p #{'<'}
+      .mobile_number_display_wrapper
+        p Page #{page}
+      unless page >= pages
+        .pagination_next_wrapper
+          a(href=`/page/${parseFloat(page) + 1}`) 
+            .pagination_next.pageNumber
+              p #{'>'}
