@@ -7,15 +7,17 @@ block content
   .contentWrapper
     .cardHero
       .heroWrapper
-        img(src=`${heroObj.imageUrls.lg}`)
+        .imageWrapper
+          img(src=`${heroObj.imageUrls.md}`)
         .heroContent
           .heroTitle
             #{heroObj.brand} #{heroObj.description}
           .heroBullets
-          - let n = 0
-            ul
-              while n < 3
-                li #{heroObj.marketingBullets[n++]}
+            - let n = 0
+              .listWrapper
+                ul
+                  while n < 3
+                    li #{heroObj.marketingBullets[n++]}
 
         .heroPriceAndButton
           .heroPrice
@@ -27,4 +29,4 @@ block content
       each product in products
         +productCard(product)
 
-  +pagination(page, pages, productCount)
+  +pagination(page, pages, productCount, heroObj.pricing.productId)

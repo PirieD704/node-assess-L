@@ -26,17 +26,20 @@ a {
     .card .cardWrapper img {
       max-width: 100px;
       max-height: 100px; }
-    .card .cardWrapper .textPriceWrapper {
+    .card .cardWrapper .textAndPriceWrapper {
       display: flex;
       flex-direction: column;
       justify-content: space-between; }
-      .card .cardWrapper .textPriceWrapper .cardText {
+      .card .cardWrapper .textAndPriceWrapper .cardText {
         font-size: 14px;
-        text-align: left; }
-      .card .cardWrapper .textPriceWrapper .cardPrice {
+        text-align: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 58px; }
+      .card .cardWrapper .textAndPriceWrapper .cardPrice {
         font-size: 16px;
         text-align: left; }
-      .card .cardWrapper .textPriceWrapper button {
+      .card .cardWrapper .textAndPriceWrapper button {
         border: 1px solid #cccccc;
         font-size: 14px;
         color: #0471af;
@@ -44,7 +47,7 @@ a {
         height: 44px;
         background: none;
         transition: 0.25s; }
-      .card .cardWrapper .textPriceWrapper button:hover {
+      .card .cardWrapper .textAndPriceWrapper button:hover {
         background: #0471af;
         color: #ffffff; }
   @media all and (max-width: 850px) {
@@ -89,9 +92,11 @@ a {
   .cardHero .heroWrapper {
     padding: 20px;
     display: flex; }
-    .cardHero .heroWrapper img {
+    .cardHero .heroWrapper .imageWrapper {
       max-width: 195px;
       max-height: 195px; }
+      .cardHero .heroWrapper .imageWrapper img {
+        position: relative; }
     .cardHero .heroWrapper .heroContent {
       color: #333333;
       padding: 0px 10px; }
@@ -100,6 +105,8 @@ a {
         font-weight: bold; }
       .cardHero .heroWrapper .heroContent .heroBullets {
         font-size: 14px; }
+        .cardHero .heroWrapper .heroContent .heroBullets .listWrapper {
+          line-height: 1.5em; }
     .cardHero .heroWrapper .heroPriceAndButton {
       padding: 0px 10px;
       width: 28%;

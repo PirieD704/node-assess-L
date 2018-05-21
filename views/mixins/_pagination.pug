@@ -1,13 +1,13 @@
-mixin pagination(page, pages, productCount)
+mixin pagination(page, pages, productCount, heroObj)
   .pagination
     .paginationWrapper
       .pagination_prev_wrapper
         if page > 1
-          a(href=`/page/${parseFloat(page) -1}`) 
+          a(href=`/page/${parseFloat(page) -1}?maxResults=8`) 
             .pagination_prev
               p #{'<'}
         else
-          a.disabled(href=`/page/${parseFloat(page) -1}` disabled) 
+          a.disabled(href=`/page/${parseFloat(page) -1}?maxResults=8` disabled) 
             .pagination_prev
               p #{'<'}
       .pagination_numbers
@@ -17,12 +17,12 @@ mixin pagination(page, pages, productCount)
               if n == page
                 - console.log('n = ' + n)
                 .pageNumberCurrentWrapper
-                  a(href=`/page/${n}`) 
+                  a(href=`/page/${n}?maxResults=8`) 
                     .pageNumberCurrent
                       p #{n}
               else
                 .pageNumberWrapper
-                  a(href=`/page/${n}`)
+                  a(href=`/page/${n}?maxResults=8`)
                     .pageNumber
                       p #{n}
               - n++
@@ -30,7 +30,7 @@ mixin pagination(page, pages, productCount)
               .pageDots
                 p #{"..."}
               .pageEndWrapper
-                a(href=`/page/${pages}`) 
+                a(href=`/page/${pages}?maxResults=8`) 
                   .pageEnd.pageNumber
                     p #{pages}
             .pagination_next_wrapper
@@ -38,7 +38,7 @@ mixin pagination(page, pages, productCount)
                 .pageNumber
                   p #{'>'}
               else
-                a(href=`/page/${parseFloat(page) + 1}`)
+                a(href=`/page/${parseFloat(page) + 1}?maxResults=8`)
                   .pagination_next.pageNumber
                     p #{'>'}
           else
@@ -49,12 +49,12 @@ mixin pagination(page, pages, productCount)
             while r < limit
               if r == page 
                 .pageNumberCurrentWrapper
-                  a(href=`/page/${r}`) 
+                  a(href=`/page/${r}?maxResults=8`) 
                     .pageNumberCurrent
                       p #{r}
               else if !(r >= pages)
                 .pageNumberWrapper
-                  a(href=`/page/${r}`) 
+                  a(href=`/page/${r}?maxResults=8`) 
                     .pageNumber
                       p #{r}
               - r++
@@ -62,38 +62,38 @@ mixin pagination(page, pages, productCount)
               .pageDots
                 p #{'...'}
               .pageNumberWrapper
-                a(href=`/page/${pages}`) 
+                a(href=`/page/${pages}?maxResults=8`) 
                   .pageNumber
                     p #{pages}
               .pagination_next_wrapper
-                a(href=`/page/${parseFloat(page) + 1}`) 
+                a(href=`/page/${parseFloat(page) + 1}?maxResults=8`) 
                   .pagination_next.pageNumber
                     p #{'>'}
             else
               if page >= pages
               else
                 .pageNumberWrapper
-                  a(href=`/page/${pages}`) 
+                  a(href=`/page/${pages}?maxResults=8`) 
                     .pageNumber
                       p #{pages}
                 .pagination_next_wrapper
-                  a(href=`/page/${parseFloat(page) + 1}`) 
+                  a(href=`/page/${parseFloat(page) + 1}?maxResults=8`) 
                     .pagination_next.pageNumber
                       p #{'>'}
     .pagination_mobile_wrapper
       .pagination_prev_wrapper
         if page > 1
-          a(href=`/page/${parseFloat(page) -1}`) 
+          a(href=`/page/${parseFloat(page) -1}?maxResults=8`) 
             .pagination_prev
               p #{'<'}
         else
-          a.disabled(href=`/page/${parseFloat(page) -1}` disabled) 
+          a.disabled(href=`/page/${parseFloat(page) -1}?maxResults=8` disabled) 
             .pagination_prev
               p #{'<'}
       .mobile_number_display_wrapper
         p Page #{page}
       unless page >= pages
         .pagination_next_wrapper
-          a(href=`/page/${parseFloat(page) + 1}`) 
+          a(href=`/page/${parseFloat(page) + 1}?maxResults=8`) 
             .pagination_next.pageNumber
               p #{'>'}

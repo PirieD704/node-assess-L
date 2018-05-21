@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
 
 exports.getProducts = async (req, res, next) => {
   const page = req.params.page || 1;
-  const maxResults = 8;
+  const maxResults = req.query.maxResults || 8;
   const offset = (page * maxResults) - maxResults;
 
   console.log("page = " + page)
@@ -18,8 +18,6 @@ exports.getProducts = async (req, res, next) => {
 
   //number of appliances returned vs. number of pages that should be available
   const pages = Math.ceil(products.productCount / maxResults);
-  console.log("pages = " + pages)
-  console.log("product Count = " + products.productCount)
   let heroObj = {};
   if (req.query.id){
     heroObj = products.productList.find(product => product.pricing.productId == req.query.id)
