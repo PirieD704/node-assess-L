@@ -1,10 +1,14 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px Helvetica, sans-serif;
   display: flex;
   justify-content: space-around; }
   body .main {
     max-width: 1032px; }
+  @media all and (max-width: 550px) {
+    body {
+      padding: 10px;
+      font-size: 12px; } }
 
 a {
   color: #00B7FF; }
@@ -56,32 +60,47 @@ a {
       .card .cardWrapper {
         width: 100%;
         display: flex; }
-      .card img {
-        width: 40%; }
-      .card .textPriceWrapper {
-        width: 50%; }
-        .card .textPriceWrapper .cardText {
-          font-size: 12px; }
-        .card .textPriceWrapper .cardPrice {
-          font-size: 14px; }
-        .card .textPriceWrapper button {
-          height: 35px; } }
+        .card .cardWrapper .cardImageWrapper {
+          width: 40%; }
+          .card .cardWrapper .cardImageWrapper img {
+            width: 100%; }
+        .card .cardWrapper .textPriceWrapper {
+          width: 50%; }
+          .card .cardWrapper .textPriceWrapper .cardText p {
+            font-size: 12px; }
+          .card .cardWrapper .textPriceWrapper .cardPrice {
+            font-size: 14px; }
+          .card .cardWrapper .textPriceWrapper button {
+            height: 35px; } }
   @media all and (max-width: 550px) {
     .card {
       width: 100%; }
       .card .cardWrapper {
-        width: 100%;
-        display: flex; }
-      .card img {
-        width: 40%; }
-      .card .textPriceWrapper {
-        width: 50%; }
-        .card .textPriceWrapper .cardText {
-          font-size: 12px; }
-        .card .textPriceWrapper .cardPrice {
-          font-size: 14px; }
-        .card .textPriceWrapper button {
-          height: 35px; } }
+        width: 90%;
+        display: flex;
+        padding: 0px 10px 10px 10px; }
+        .card .cardWrapper .cardImageWrapper {
+          width: 90%;
+          padding-top: 10px; }
+        .card .cardWrapper .textPriceWrapper {
+          width: 50%; }
+          .card .cardWrapper .textPriceWrapper .cardText {
+            font-size: 12px; }
+          .card .cardWrapper .textPriceWrapper .cardPrice {
+            font-size: 14px; }
+          .card .cardWrapper .textPriceWrapper button {
+            height: 35px; } }
+  @media all and (max-width: 350px) {
+    .card .cardWrapper {
+      width: 90%;
+      padding: 0px 10px 10px 10px; }
+      .card .cardWrapper .cardImageWrapper {
+        width: 90%;
+        padding-top: 20px; }
+      .card .cardWrapper .textPriceWrapper .cardText p {
+        font-size: 12px; }
+      .card .cardWrapper .textPriceWrapper button {
+        height: 39px; } }
 
 .cardHero {
   font-family: Helvetica, sans-serif;
@@ -99,22 +118,25 @@ a {
         position: relative; }
     .cardHero .heroWrapper .heroContent {
       color: #333333;
-      padding: 0px 10px; }
+      padding: 0px 20px 0px 10px; }
       .cardHero .heroWrapper .heroContent .heroTitle {
         font-size: 16px;
         font-weight: bold; }
       .cardHero .heroWrapper .heroContent .heroBullets {
         font-size: 14px; }
         .cardHero .heroWrapper .heroContent .heroBullets .listWrapper {
-          line-height: 1.5em; }
+          line-height: 1.5em;
+          overflow: hidden;
+          text-overflow: ellipsis; }
     .cardHero .heroWrapper .heroPriceAndButton {
-      padding: 0px 10px;
+      padding-left: 10px;
       width: 28%;
       vertical-align: top; }
       .cardHero .heroWrapper .heroPriceAndButton .heroPrice {
         color: #333333;
         font-size: 22px;
-        font-weight: bold; }
+        font-weight: bold;
+        line-height: 0px; }
       .cardHero .heroWrapper .heroPriceAndButton button {
         color: #ffffff;
         height: 44px;
@@ -134,6 +156,15 @@ a {
       flex-direction: column;
       justify-content: center;
       width: 82%; }
+      .cardHero .heroWrapper .imageWrapper {
+        padding: 0px 30px 15px; }
+      .cardHero .heroWrapper .heroContent {
+        padding: 0px; }
+        .cardHero .heroWrapper .heroContent .heroBullets {
+          font-size: 11px; }
+          .cardHero .heroWrapper .heroContent .heroBullets .listWrapper {
+            line-height: 1.65em;
+            margin-left: -30px; }
       .cardHero .heroWrapper .heroPriceAndButton {
         width: 100%; } }
 

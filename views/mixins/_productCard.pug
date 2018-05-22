@@ -1,7 +1,8 @@
 mixin productCard(product = {})
   .card
     .cardWrapper
-      img(src=`${product.imageUrls.sm}`)
+      .cardImageWrapper
+        img(src=`${product.imageUrls.sm}`)
       .textAndPriceWrapper
         .cardText
           p #{product.brand} #{product.description}
