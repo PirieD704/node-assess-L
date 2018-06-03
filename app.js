@@ -6,6 +6,9 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const sassMiddleware = require('node-sass-middleware');
 const errorHandlers = require('./handlers/errorHandlers');
+//Added these requirements to handle CORS request
+const _ = require('lodash');
+const cors = require('cors');
 
 const index = require('./routes/index');
 const users = require('./routes/users');
@@ -29,6 +32,8 @@ app.use(sassMiddleware({
   sourceMap: true
 }));
 app.use(express.static(path.join(__dirname, 'public')));
+//This was put here to handle our Cross-Origin Request
+app.use(cors());
 
 app.use('/', index);
 

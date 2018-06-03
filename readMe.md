@@ -9,3 +9,12 @@ Stack used:
 * ExpressJS
 * Pug
 * Sass
+
+#### Things editted to create proxy
+
+* proxyTable in vue-client/config/index.js
+* added lodash and cors to app.js and directed app to use cors()
+* Needed to stand up concurrent processing of servers for dev environment
+    * added concurrently and cors to backend package.json
+    * chained the npm command to start front and backend simultaneously. set a kill command to help with managing open ports.
+* used fetch as http command coupled with async await combo. Same as back-end strategy.
