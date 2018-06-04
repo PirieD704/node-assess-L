@@ -1,11 +1,12 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
     <router-view/>
   </div>
 </template>
 
 <script>
+console.log("check")
+console.log(this.$store)
 export default {
   name: 'App'
 }
