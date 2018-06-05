@@ -5,20 +5,24 @@
 </template>
 
 <script>
-console.log("check")
-console.log(this.$store)
 export default {
   name: 'App'
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+body {
+  padding: 50px;
+  font: 14px Helvetica, sans-serif;
+  display: flex;
+  justify-content: space-around; }
+  body #app {
+    max-width: 1032px; }
+  @media all and (max-width: 550px) {
+    body {
+      padding: 10px;
+      font-size: 12px; } }
+
+a {
+  color: #00B7FF; }
 </style>
