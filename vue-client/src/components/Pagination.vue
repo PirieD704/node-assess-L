@@ -2,16 +2,12 @@
   <div class="pagination">
     <div class="paginationWrapper">
       <div class="pagination_prev_wrapper">
-        <a :href="'/page/'+(page - 1)+'?maxResults=8'" v-if="page > 1">
-          <div class="pagination_prev">
-            <p><</p>
-          </div>
-        </a>
-        <a :href="'/page/'+(page - 1)+'?maxResults=8'" v-else disabled>
-          <div class="pagination_prev">
-            <p><</p>
-          </div>
-        </a>
+        <button class="pagination_prev" v-if="page > 1">
+          <
+        </button>
+        <button class="pagination_prev" v-else disabled>
+          <
+        </button>
       </div>
       <div class="pagination_numbers">
         <template v-if="page < 5">
@@ -100,6 +96,8 @@
     </div>
   </div>
 </template>
+
+
 <script>
 export default {
   props: {
@@ -116,6 +114,8 @@ export default {
     
 }
 </script>
+
+
 <style>
 .pagination {
   display: flex;
@@ -130,16 +130,22 @@ export default {
       color: inherit;
       text-decoration: none;
       vertical-align: middle; }
+    .pagination .paginationWrapper button {
+      color: inherit;
+      text-decoration: none;
+      vertical-align: middle; }
     .pagination .paginationWrapper .pagination_prev {
       color: #ffffff;
       background-color: #cccccc;
-      padding: 11px 17px;
+      padding: 0px 17px;
       margin: 0px 5px;
       border: 1px solid #cccccc;
-      height: 15px;
+      height: 100%;
       display: flex;
       flex-direction: column;
-      justify-content: center; }
+      justify-content: center;
+      font-family: 'BenchNine', sans-serif;
+      font-size: 1.7em; }
     .pagination .paginationWrapper .pagination_numbers {
       display: flex;
       font-weight: bold;

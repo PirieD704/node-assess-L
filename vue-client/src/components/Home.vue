@@ -7,6 +7,7 @@
         :product="product" 
         :key="product.id"
         :page="page"
+        @updateHeroCall="changeHero($event)"
       ></product-card>
     </div>
     <pagination-section :page="page" :pages="pages" :productCount="productCount"></pagination-section>
@@ -50,6 +51,11 @@ export default {
     heroSection: Hero,
     productCard: Card,
     paginationSection: Pagination
+  },
+  methods: {
+    changeHero(e) {
+      this.$data.heroObj = this.$data.productList.find(product => product.pricing.productId == e)
+    }
   }
 }
 </script>

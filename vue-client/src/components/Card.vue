@@ -11,13 +11,13 @@
         <div class="cardPrice">
           <p>{{product.networkPrice.replace(/(\.\d+)/g,".00")}}</p>
         </div>
-        <a :href="'/page/'+page+'?id='+product.pricing.productId">
-          <button type="button">VIEW MORE</button>
-        </a>
+        <button type="button" @click="updateHero(product.pricing.productId)">VIEW MORE</button>
       </div>
     </div>
   </div>
 </template>
+
+
 <script>
 export default {
   props: {
@@ -27,9 +27,16 @@ export default {
     page: {
       type: Number
     }
+  },
+  methods: {
+    updateHero(newHeroId) {
+      console.log(newHeroId);
+      this.$emit("updateHeroCall", newHeroId)
+    }
   }
 }
 </script>
+
 
 <style>
 .card {
