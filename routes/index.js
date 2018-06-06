@@ -8,5 +8,6 @@ const { catchErrors } = require('../handlers/errorHandlers');
 router.get('/', catchErrors(productController.getProducts));
 router.get('/page/:page', catchErrors(productController.getProducts));
 router.get('/api', catchErrors(proxyProductController.getProducts));
+router.get('/api/page/:page', catchErrors(proxyProductController.getProducts));
 
 module.exports = router;

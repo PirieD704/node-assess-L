@@ -10,7 +10,12 @@
         @updateHeroCall="changeHero($event)"
       ></product-card>
     </div>
-    <pagination-section :page="page" :pages="pages" :productCount="productCount"></pagination-section>
+    <pagination-section 
+      :page="page" 
+      :pages="pages" 
+      :productCount="productCount"
+      @updateProductsCall="getMoreProducts($event)"
+    ></pagination-section>
     
   </div>
 </template>
@@ -24,19 +29,22 @@ import Hero from './Hero.vue';
 import Pagination from './Pagination.vue';
 //import { eventBus } from '../main';
 
+let self = this
 export default {
   name: 'Home',
   created: async function(){
     console.log('Home::created'); //useful to understand lifecycle
     //console.log(eventBus);
     const response = await fetch("/api");
-    const data = await response.json();
+    const returnedData = await response.json();
 
-    this.$data.heroObj = data.heroObj
-    this.$data.productList = data.products
-    this.$data.page = data.page
-    this.$data.pages = data.pages
-    this.$data.productCount = data.productCount
+    console.log("this")
+    console.log(this) 
+    this.$data.heroObj = returnedData.heroObj
+    this.$data.productList = returnedData.products
+    this.$data.page = returnedData.page
+    this.$data.pages = returnedData.pages
+    this.$data.productCount = returnedData.productCount
   },
   data: function() {
     return {
@@ -55,6 +63,22 @@ export default {
   methods: {
     changeHero(e) {
       this.$data.heroObj = this.$data.productList.find(product => product.pricing.productId == e)
+      console.log(this.$data.productList);
+    },
+    getMoreProducts: async function (e) {
+      const apiCall = "/api/page/" + e.page + "?maxResults=8"
+      console.log(apiCall);
+      
+      const response =  await fetch(apiCall);
+      const returnedData =  await response.json();
+      console.log("apiResponse")
+      console.log(returnedData);
+      console.log(returnedData.products);
+      
+      this.$data.productList = await returnedData.products
+      this.$data.page = await returnedData.page
+      this.$data.pages = await returnedData.pages
+      this.$data.productCount = await returnedData.productCount
     }
   }
 }

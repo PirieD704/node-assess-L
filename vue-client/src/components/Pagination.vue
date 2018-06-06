@@ -2,7 +2,7 @@
   <div class="pagination">
     <div class="paginationWrapper">
       <div class="pagination_prev_wrapper">
-        <button class="pagination_prev" v-if="page > 1">
+        <button class="pagination_prev" v-if="page > 1" @click="updateProducts({page: (page - 1), pages: pages, productCount: productCount})">
           <
         </button>
         <button class="pagination_prev" v-else disabled>
@@ -13,18 +13,14 @@
         <template v-if="page < 5">
           <template v-for="n in 5">
             <div class="pageNumberCurrentWrapper" v-if="n === page" :key="n">
-              <a :href="'/page/'+n+'?maxResults=8'">
-                <div class="pageNumberCurrent">
-                  <p>{{n}}</p>
-                </div>
-              </a>
+              <button @click="updateProducts(n)">
+                {{n}}
+              </button>
             </div>
             <div class="pageNumberWrapper" v-else :key="n">
-              <a :href="'/page/'+n+'?maxResults=8'">
-                <div class="pageNumber">
-                  <p>{{n}}</p>
-                </div>
-              </a>
+              <button @click="updateProducts({page: n, pages: pages, productCount: productCount})">
+                {{n}}
+              </button>
             </div>
           </template>
           <template v-if="pages >= 6">
@@ -32,54 +28,44 @@
               <p>...</p>
             </div>
             <div class="pageEndWrapper">
-              <a :href="'/page/'+pages+'?maxResults=8'">
-                <div class="pageEnd pageNumber">
-                  <p>{{pages}}</p>
-                </div>
-              </a>
+              <button @click="updateProducts({page: pages, pages: pages, productCount: productCount})">
+                {{pages}}
+              </button>
             </div>
           </template>
           <div class="pagination_next_wrapper">
             <div class="pageNumber" v-if="page >= pages">
               <p>></p>
             </div>
-            <a :href="'/page/'+(page + 1)+'?maxResults=8'" v-else>
-              <div class="pagination_next pageNumber">
-                <p>></p>
-              </div>
-            </a>
+             <button @click="updateProducts({page: (n+1), pages: pages, productCount: productCount})" v-else>
+              >
+            </button>
           </div>
         </template>
         <template v-else-if="page >= pages">
         </template>
         <template v-else>
           <div class="pageNumberWrapper">
-            <a :href="'/page/'+pages+'?maxResults=8'">
-              <p>{{pages}}</p>
-            </a>
+            <button @click="updateProducts({page: pages, pages: pages, productCount: productCount})">
+              {{pages}}
+            </button>
           </div>
           <div class="pagination_next_wrapper">
-            <a :href="'/page/'+(page + 1)+'?maxResults=8'">
-              <div class="pagination_next pageNumber">
-                <p><</p>
-              </div>
-            </a>
+            <button @click="updateProducts({page: pages, pages: pages, productCount: productCount})">
+              >
+            </button>
           </div>
         </template>
       </div>
     </div>
     <div class="pagination_mobile_wrapper">
       <div class="pagination_prev_wrapper">
-        <a :href="'/page/'+(page - 1)+'?maxResults=8'" v-if="page > 1">
-          <div class="pagination_prev">
+        <button @click="updateProducts({page: (page - 1), pages: pages, productCount: productCount})" v-if="page > 1">
+          <
+        </button>
+        <div class="pagination_prev" v-else>
             <p><</p>
-          </div>
-        </a>
-        <a :href="'/page/'+(page - 1)+'?maxResults=8'" class="disabled" v-else disabled>
-          <div class="pagination_prev">
-            <p><</p>
-          </div>
-        </a>
+        </div>
       </div>
       <div class="mobile_number_display_wrapper">
         <p>Page {{page}}</p>
@@ -87,11 +73,9 @@
       <template v-if="page >= pages">
       </template>
       <div class="pagination_next_wrapper" v-else>
-        <a :href="'/page/'+(page + 1)+'?maxResults=8'">
-          <div class="pagination_next pageNumber">
-            <p>></p>
-          </div>
-        </a>
+        <button @click="updateProducts({page: (page + 1), pages: pages, productCount: productCount})">
+          >
+        </button>
       </div>
     </div>
   </div>
@@ -110,8 +94,13 @@ export default {
     productCount: {
       type: Number
     }
+  },
+  methods: {
+    updateProducts(page) {
+      console.log(page);
+      this.$emit("updateProductsCall", page)
+    }
   }
-    
 }
 </script>
 
@@ -150,22 +139,34 @@ export default {
       display: flex;
       font-weight: bold;
       font-family: helvetica, sans-serif; }
-      .pagination .paginationWrapper .pagination_numbers .pageNumberCurrent {
+      .pagination .paginationWrapper .pagination_numbers .pageNumberCurrentWrapper button {
         padding: 11px 17px;
         margin: 0px 5px;
-        height: 17px;
+        height: 100%;
         background-color: #0471af;
         color: #ffffff;
         display: flex;
         flex-direction: column;
-        justify-content: center; }
+        justify-content: center;
+      }
       .pagination .paginationWrapper .pagination_numbers .pageNumber {
         padding: 11px 17px;
         margin: 0px 5px;
         height: 17px;
         display: flex;
         flex-direction: column;
-        justify-content: center; }
+        justify-content: center;
+      }
+      .pagination .paginationWrapper .pagination_numbers button {
+        height: 100%;
+        border: none;
+        background-color: #ffffff;
+        font-size: 14px;
+        font-weight: bold;
+        font-family: helvetica, sans-serif;
+        padding: 11px 17px;
+        margin: 0px 5px;
+      } 
       .pagination .paginationWrapper .pagination_numbers .pageDots {
         font-family: ICON;
         font-weight: 400;
@@ -182,6 +183,14 @@ export default {
         border: 1px solid #cccccc;
         height: 15px;
         color: #0471af; }
+      .pagination .paginationWrapper .pagination_numbers .pagination_next_wrapper button {
+        border: 1px solid #cccccc;
+        height: 100%;
+        color: #0471af;
+        padding: 1px 17px;
+        margin: 0px 5px;
+        font-family: 'BenchNine', sans-serif;
+        font-size: 1.7em; }
   .pagination .pagination_mobile_wrapper {
     display: none;
     font-weight: bold;
@@ -200,15 +209,30 @@ export default {
       display: flex;
       flex-direction: column;
       justify-content: center; }
-    .pagination .pagination_mobile_wrapper .pagination_next {
-      border: 1px solid #cccccc;
+    .pagination .pagination_mobile_wrapper .pagination_prev_wrapper button {
       color: #0471af;
-      height: 15px;
-      padding: 11px 17px;
+      background-color: #ffffff;
+      padding: 1px 17px;
       margin: 0px 5px;
+      border: 1px solid #cccccc;
+      height: 100%;
       display: flex;
       flex-direction: column;
-      justify-content: center; }
+      justify-content: center;
+      font-family: 'BenchNine', sans-serif;
+      font-size: 1.7em; }
+    .pagination .pagination_mobile_wrapper .pagination_next_wrapper button {
+      border: 1px solid #cccccc;
+      color: #0471af;
+      height: 100%;
+      padding: 1px 17px;
+      margin: 0px 5px;
+      display: flex;
+      background-color: #ffffff;
+      flex-direction: column;
+      justify-content: center;
+      font-family: 'BenchNine', sans-serif;
+      font-size: 1.7em; }
     .pagination .pagination_mobile_wrapper .mobile_number_display_wrapper {
       padding: 11px 17px;
       margin: 0px 5px;
