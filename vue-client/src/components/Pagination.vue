@@ -2,12 +2,12 @@
   <div class="pagination">
     <div class="paginationWrapper">
       <div class="pagination_prev_wrapper">
-        <router-link :to="{name: 'newPage', params: { page: page-1 }}" v-if="page > 1">
+        <router-link :to="{name: 'newPage', params: { page: page-1 }, query: {maxResults: maxResults}}" v-if="page > 1">
           <div class="pagination_prev">
             <p><</p>  
           </div>
         </router-link>
-        <router-link :to="{name: 'newPage', params: { page: (page-1) }}" v-else disabled>
+        <router-link :to="{name: 'newPage', params: { page: (page-1) }, query: {maxResults: maxResults}}" v-else disabled>
           <div class="pagination_prev">
             <p><</p>  
           </div>
@@ -17,14 +17,14 @@
         <template v-if="page < 5">
           <template v-for="n in 5">
             <div class="pageNumberCurrentWrapper" v-if="n == page" :key="n">
-              <router-link :to="{name: 'newPage', params: { page: page }}">
+              <router-link :to="{name: 'newPage', params: { page: page }, query: {maxResults: maxResults}}">
                 <div class="pageNumberCurrent">
                   <p>{{n}}</p>
                 </div>
               </router-link>
             </div>
             <div class="pageNumberWrapper" v-else :key="n">
-              <router-link :to="{name: 'newPage', params: { page: n }}">
+              <router-link :to="{name: 'newPage', params: { page: n }, query: {maxResults: maxResults}}">
                 <div class="pageNumber">
                   <p>{{n}}</p>
                 </div>
@@ -36,7 +36,7 @@
               <p>...</p>
             </div>
             <div class="pageEndWrapper">
-              <router-link :to="{name: 'newPage', params: { page: pages }}">
+              <router-link :to="{name: 'newPage', params: { page: pages }, query: {maxResults: maxResults}}">
                 <div class="pageEnd pageNumber">
                   <p>{{pages}}</p>
                 </div>
@@ -47,7 +47,7 @@
             <div class="pageNumber" v-if="page >= pages">
               <p>></p>
             </div>
-             <router-link :to="{name: 'newPage', params: { page: (page+ 1) }}" v-else>
+             <router-link :to="{name: 'newPage', params: { page: (page+ 1) }, query: {maxResults: maxResults}}" v-else>
               <div class="pagination_next pageNumber">
                 <p>></p>
               </div>
@@ -60,21 +60,21 @@
           </div>
           <template v-if="(pages-page) > 2">
             <div class="pageNumberWrapper">
-              <router-link :to="{name: 'newPage', params: {page: (page-1)}}">
+              <router-link :to="{name: 'newPage', params: {page: (page-1)}, query: {maxResults: maxResults}}">
                 <div class="pageNumber">
                   <p>{{page-1}}</p>
                 </div>
               </router-link>
             </div>
             <div class="pageNumberCurrentWrapper">
-              <router-link :to="{name: 'newPage', params: {page: page}}">
+              <router-link :to="{name: 'newPage', params: {page: page}, query: {maxResults: maxResults}}">
                 <div class="pageNumberCurrent">
                   <p>{{page}}</p>
                 </div>
               </router-link>
             </div>
             <div class="pageNumberWrapper">
-              <router-link :to="{name: 'newPage', params: {page: (page+1)}}">
+              <router-link :to="{name: 'newPage', params: {page: (page+1)}, query: {maxResults: maxResults}}">
                 <div class="pageNumber">
                   <p>{{page+1}}</p>
                 </div>
@@ -84,14 +84,14 @@
               <p>...</p>
             </div>
             <div class="pageNumberWrapper">
-              <router-link :to="{name: 'newPage', params: {page: (pages)}}">
+              <router-link :to="{name: 'newPage', params: {page: (pages)}, query: {maxResults: maxResults}}">
                 <div class="pageNumber">
                   <p>{{pages}}</p>
                 </div>
               </router-link>
             </div>
             <div class="pagination_next_wrapper">
-              <router-link :to="{name: 'newPage', params: {page: (page+1)}}">
+              <router-link :to="{name: 'newPage', params: {page: (page+1)}, query: {maxResults: maxResults}}">
                 <div class="pagination_next pageNumber">
                   <p>></p>
                 </div>
@@ -100,42 +100,42 @@
           </template>
           <template v-else>
             <div class="pageNumberCurrentWrapper" v-if="(pages-page) == 2">
-              <router-link :to="{name: 'newPage', params: {page: page}}">
+              <router-link :to="{name: 'newPage', params: {page: page}, query: {maxResults: maxResults}}">
                 <div class="pageNumberCurrent">
                   <p>{{page}}</p>
                 </div>
               </router-link>
             </div>
             <div class="pageNumberWrapper" v-else>
-              <router-link :to="{name: 'newPage', params: {page: (pages-2)}}">
+              <router-link :to="{name: 'newPage', params: {page: (pages-2)}, query: {maxResults: maxResults}}">
                 <div class="pageNumber">
                   <p>{{pages-2}}</p>
                 </div>
               </router-link>
             </div>
             <div class="pageNumberCurrentWrapper" v-if="(pages-page) == 1">
-              <router-link :to="{name: 'newPage', params: {page: page}}">
+              <router-link :to="{name: 'newPage', params: {page: page}, query: {maxResults: maxResults}}">
                 <div class="pageNumberCurrent">
                   <p>{{page}}</p>
                 </div>
               </router-link>
             </div>
             <div class="pageNumberWrapper" v-else>
-              <router-link :to="{name: 'newPage', params: {page: (pages-1)}}">
+              <router-link :to="{name: 'newPage', params: {page: (pages-1)}, query: {maxResults: maxResults}}">
                 <div class="pageNumber">
                   <p>{{pages-1}}</p>
                 </div>
               </router-link>
             </div>
             <div class="pageNumberCurrentWrapper" v-if="pages == page">
-              <router-link :to="{name: 'newPage', params: {page: page}}">
+              <router-link :to="{name: 'newPage', params: {page: page}, query: {maxResults: maxResults}}">
                 <div class="pageNumberCurrent">
                   <p>{{page}}</p>
                 </div>
               </router-link>
             </div>
             <div class="pageNumberWrapper" v-else>
-              <router-link :to="{name: 'newPage', params: {page: (pages)}}">
+              <router-link :to="{name: 'newPage', params: {page: (pages)}, query: {maxResults: maxResults}}">
                 <div class="pageNumber">
                   <p>{{pages}}</p>
                 </div>
@@ -147,7 +147,7 @@
               </div>
             </div>
             <div class="pagination_next_wrapper" v-else>
-              <router-link :to="{name: 'newPage', params: {page: (page+1)}}">
+              <router-link :to="{name: 'newPage', params: {page: (page+1)}, query: {maxResults: maxResults}}">
                 <div class="pagination_next pageNumber">
                   <p>></p>
                 </div>
@@ -159,7 +159,7 @@
     </div>
     <div class="pagination_mobile_wrapper">
       <div class="pagination_prev_wrapper">
-        <router-link :to="{name: 'newPage', params: {page: (page-1)}}" v-if="page > 1">
+        <router-link :to="{name: 'newPage', params: {page: (page-1)}, query: {maxResults: maxResults}}" v-if="page > 1">
           <div class="pagination_prev">
             <p><</p>
           </div>
@@ -174,7 +174,7 @@
       <template v-if="page >= pages">
       </template>
       <div class="pagination_next_wrapper" v-else>
-        <router-link :to="{name: 'newPage', params: {page: (page+1)}}">
+        <router-link :to="{name: 'newPage', params: {page: (page+1)}, query: {maxResults: maxResults}}">
           <div class="pagination_next pageNumber">
             <p>></p>
           </div>
@@ -196,13 +196,9 @@ export default {
     },
     productCount: {
       type: Number
-    }
-  },
-  methods: {
-    updateProducts(e) {
-      console.log("the range:");
-      console.log(range);
-      this.$emit("updateProductsCall", e)
+    },
+    maxResults: {
+      type: Number
     }
   }
 }

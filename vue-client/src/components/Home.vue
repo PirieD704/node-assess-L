@@ -19,6 +19,7 @@
       :page="page" 
       :pages="pages" 
       :productCount="productCount"
+      :maxResults="maxResults"
       @updateProductsCall="getMoreProducts($event)"
     ></pagination-section>
     
@@ -26,21 +27,16 @@
 </template>
 
 <script>
-// store of how to invoke state in case switch to it later
-//    <h4>{{ this.$store.state.page }}</h4>
-
 import Card from './Card.vue';
 import Hero from './Hero.vue';
 import Pagination from './Pagination.vue';
 import Modal from './Modal.vue';
-//import { eventBus } from '../main';
 
 let self = this
 export default {
   name: 'Home',
   created: async function(){
     console.log('Home::created'); //useful to understand lifecycle
-    //console.log(eventBus);
     const response = await fetch("/api");
     const returnedData = await response.json();
 
@@ -51,6 +47,7 @@ export default {
     this.$data.page = returnedData.page
     this.$data.pages = returnedData.pages
     this.$data.productCount = returnedData.productCount
+    this.$data.maxResults = returnedData.maxResults
   },
   data: function() {
     return {
@@ -59,7 +56,8 @@ export default {
       page: 1,
       pages: 8,
       productCount: 60,
-      showModal: false
+      showModal: false,
+      maxResults: 8
     }
   },
   components: {
@@ -73,7 +71,7 @@ export default {
       console.log("this is the watcher")
       console.log(e)
       console.log(e.params.page)
-      this.getMoreProducts(e.params.page)
+      this.getMoreProducts(e)
     }
   },
   methods: {
@@ -82,7 +80,7 @@ export default {
       console.log(this.$data.productList);
     },
     getMoreProducts: async function (e) {
-      const apiCall = "/api/page/" + e + "?maxResults=8"
+      const apiCall = "/api/page/" + e.params.page + "?maxResults=" + e.query.maxResults;
       console.log(apiCall);
       
       const response =  await fetch(apiCall);
@@ -94,6 +92,7 @@ export default {
       this.$data.page = await returnedData.page
       this.$data.pages = await returnedData.pages
       this.$data.productCount = await returnedData.productCount
+      this.$data.maxResults = await returnedData.maxResults
     }
   }
 }
