@@ -2,7 +2,7 @@
   <div class="pagination">
     <div class="paginationWrapper">
       <div class="pagination_prev_wrapper">
-        <button class="pagination_prev" v-if="page > 1" @click="updateProducts({page: (page - 1), pages: pages, productCount: productCount})">
+        <button class="pagination_prev" v-if="parseFloat(page) > 1" @click="updateProducts({page: (parseFloat(page) - 1), pages: pages, productCount: productCount})">
           <
         </button>
         <button class="pagination_prev" v-else disabled>
@@ -10,9 +10,9 @@
         </button>
       </div>
       <div class="pagination_numbers">
-        <template v-if="page < 5">
+        <template v-if="page <= 4">
           <template v-for="n in 5">
-            <div class="pageNumberCurrentWrapper" v-if="n === page" :key="n">
+            <div class="pageNumberCurrentWrapper" v-if="n == page" :key="n">
               <button @click="updateProducts(n)">
                 {{n}}
               </button>
@@ -37,30 +37,64 @@
             <div class="pageNumber" v-if="page >= pages">
               <p>></p>
             </div>
-             <button @click="updateProducts({page: (n+1), pages: pages, productCount: productCount})" v-else>
+             <button @click="updateProducts({page: (parseFloat(page)+1), pages: pages, productCount: productCount})" v-else>
               >
             </button>
           </div>
-        </template>
-        <template v-else-if="page >= pages">
         </template>
         <template v-else>
-          <div class="pageNumberWrapper">
-            <button @click="updateProducts({page: pages, pages: pages, productCount: productCount})">
-              {{pages}}
-            </button>
+          <div class="pageDots">
+              <p>...</p>
           </div>
-          <div class="pagination_next_wrapper">
-            <button @click="updateProducts({page: pages, pages: pages, productCount: productCount})">
-              >
-            </button>
-          </div>
+          <template v-for="n in range((parseFloat(page) - 1), (parseFloat(page) + 2))" :>
+            <div class="pageNumberCurrentWrapper" v-if="n == page" :key="n">
+              <button @click="updateProducts(n)">
+                {{n}}
+              </button>
+            </div>
+            <div class="pageNumberWrapper" v-else-if="!(n >= pages)" :key="n">
+              <button @click="updateProducts({page: n, pages: pages, productCount: productCount})">
+                {{n}}
+              </button>
+            </div>
+          </template>
+          <template v-if="(parseFloat(page)+2) < pages">
+            <div class="pageDots">
+              <p>...</p>
+            </div>
+            <div class="pageNumberWrapper">
+              <button @click="updateProducts({page: pages, pages: pages, productCount: productCount})">
+                {{pages}}
+              </button>
+            </div>
+            <div class="pagination_next_wrapper">
+              <button @click="updateProducts({page: (parseFloat(page) + 1), pages: pages, productCount: productCount})">
+                >
+              </button>
+            </div>
+          </template>
+          <template v-else>
+            <template v-if="page >= pages">
+            </template>
+            <template v-else>
+              <div class="pageNumberWrapper">
+                <button @click="updateProducts({page: pages, pages: pages, productCount: productCount})">
+                  {{pages}}
+                </button>
+              </div>
+              <div class="pagination_next_wrapper">
+                <button @click="updateProducts({page: pages, pages: pages, productCount: productCount})">
+                  >
+                </button>
+              </div>
+            </template>
+          </template>
         </template>
       </div>
     </div>
     <div class="pagination_mobile_wrapper">
       <div class="pagination_prev_wrapper">
-        <button @click="updateProducts({page: (page - 1), pages: pages, productCount: productCount})" v-if="page > 1">
+        <button @click="updateProducts({page: (parseFloat(page) - 1), pages: pages, productCount: productCount})" v-if="parseFloat(page) > 1">
           <
         </button>
         <div class="pagination_prev" v-else>
@@ -73,7 +107,7 @@
       <template v-if="page >= pages">
       </template>
       <div class="pagination_next_wrapper" v-else>
-        <button @click="updateProducts({page: (page + 1), pages: pages, productCount: productCount})">
+        <button @click="updateProducts({page: (parseFloat(page) + 1), pages: pages, productCount: productCount})">
           >
         </button>
       </div>
@@ -96,9 +130,9 @@ export default {
     }
   },
   methods: {
-    updateProducts(page) {
-      console.log(page);
-      this.$emit("updateProductsCall", page)
+    updateProducts(e) {
+      console.log(e);
+      this.$emit("updateProductsCall", e)
     }
   }
 }

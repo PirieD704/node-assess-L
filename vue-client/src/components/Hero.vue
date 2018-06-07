@@ -10,18 +10,16 @@
         </div>
         <div class="heroBullets">
           <ul>
-            <li v-for="(bullet, index) in heroObj.marketingBullets" :key="bullet.id" v-if="index < 3">{{ bullet }}</li>
+            <li v-for="(bullet, index) in heroObj.marketingBullets" :key="bullet.id" v-if="index < 3">{{ bullet.replace(/(\&\#8482\;)/g, "™").replace(/(\&\#174\;)/g, "®") }}</li>
           </ul>
         </div>
       </div>
       <div class="heroPriceAndButton">
         <div class="heroPrice">
-          <p>{{heroObj.networkPrice.replace(/(\.\d+)/g, ".00")}}</p>
-          <a href="nothing!">
-            <button type="submit" disabled>
-              ADD TO CART
-            </button>
-          </a>
+          <p>{{heroObj.pricing.price.selling.replace(/(\.\d+)/g, ".00")}}</p>
+          <button type="submit" @click="$emit('open')">
+            ADD TO CART
+          </button>
         </div>
       </div>
     </div>
@@ -63,7 +61,8 @@ export default {
         font-size: 16px;
         font-weight: bold; }
       .cardHero .heroWrapper .heroContent .heroBullets {
-        font-size: 14px; }
+        font-size: 14px;
+        line-height: 1.7; }
         .cardHero .heroWrapper .heroContent .heroBullets .listWrapper {
           line-height: 1.5em;
           overflow: hidden;

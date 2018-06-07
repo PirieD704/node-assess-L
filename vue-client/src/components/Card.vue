@@ -9,7 +9,7 @@
           <p>{{product.brand}} {{product.description}}</p>
         </div>
         <div class="cardPrice">
-          <p>{{product.networkPrice.replace(/(\.\d+)/g,".00")}}</p>
+          <p>{{product.pricing.price.selling.replace(/(\.\d+)/g, ".00")}}</p>
         </div>
         <button type="button" @click="updateHero(product.pricing.productId)">VIEW MORE</button>
       </div>

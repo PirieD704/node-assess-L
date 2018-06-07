@@ -1,6 +1,11 @@
 <template>
   <div class="home">
-    <hero-section :heroObj="heroObj"></hero-section>
+    <hero-section :heroObj="heroObj" @open="showModal = true"></hero-section>
+    <modal 
+      v-if="showModal" 
+      @close="showModal = false"
+      :heroObj="heroObj">
+    </modal>
     <div class="cardList">
       <product-card 
         v-for="product in productList" 
@@ -27,6 +32,7 @@
 import Card from './Card.vue';
 import Hero from './Hero.vue';
 import Pagination from './Pagination.vue';
+import Modal from './Modal.vue';
 //import { eventBus } from '../main';
 
 let self = this
@@ -52,13 +58,15 @@ export default {
       productList: [],
       page: 1,
       pages: 8,
-      productCount: 60
+      productCount: 60,
+      showModal: false
     }
   },
   components: {
     heroSection: Hero,
     productCard: Card,
-    paginationSection: Pagination
+    paginationSection: Pagination,
+    modal: Modal
   },
   methods: {
     changeHero(e) {
@@ -72,8 +80,7 @@ export default {
       const response =  await fetch(apiCall);
       const returnedData =  await response.json();
       console.log("apiResponse")
-      console.log(returnedData);
-      console.log(returnedData.products);
+      console.log(returnedData.page);
       
       this.$data.productList = await returnedData.products
       this.$data.page = await returnedData.page
