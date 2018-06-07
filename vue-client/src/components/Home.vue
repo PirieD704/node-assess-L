@@ -68,19 +68,27 @@ export default {
     paginationSection: Pagination,
     modal: Modal
   },
+  watch: {
+    '$route' (e) {
+      console.log("this is the watcher")
+      console.log(e)
+      console.log(e.params.page)
+      this.getMoreProducts(e.params.page)
+    }
+  },
   methods: {
     changeHero(e) {
       this.$data.heroObj = this.$data.productList.find(product => product.pricing.productId == e)
       console.log(this.$data.productList);
     },
     getMoreProducts: async function (e) {
-      const apiCall = "/api/page/" + e.page + "?maxResults=8"
+      const apiCall = "/api/page/" + e + "?maxResults=8"
       console.log(apiCall);
       
       const response =  await fetch(apiCall);
       const returnedData =  await response.json();
       console.log("apiResponse")
-      console.log(returnedData.page);
+      console.log(typeof(await returnedData.page));
       
       this.$data.productList = await returnedData.products
       this.$data.page = await returnedData.page
